@@ -119,7 +119,7 @@ export default function FinalCTA() {
               <a href="https://linkedin.com" aria-label="LinkedIn" className="text-white/60 hover:text-white transition">
                 <Linkedin size={18} />
               </a>
-              <a href="mailto:hello@revforge.io" aria-label="Email" className="text-white/60 hover:text-white transition">
+              <a href="mailto:contact@revforge.xyz" aria-label="Email" className="text-white/60 hover:text-white transition">
                 <Mail size={18} />
               </a>
             </div>

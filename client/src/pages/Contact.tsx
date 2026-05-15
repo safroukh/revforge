@@ -17,7 +17,7 @@ export default function Contact() {
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Sales",
-      "email": "hello@revforge.io"
+      "email": "contact@revforge.xyz"
     }
   };
 
@@ -77,7 +77,7 @@ export default function Contact() {
                     <h3 className="text-lg font-semibold text-foreground mb-1">
                       {language === 'en' ? 'Email' : 'Email'}
                     </h3>
-                    <p className="text-muted-foreground">hello@revforge.io</p>
+                    <p className="text-muted-foreground">contact@revforge.xyz</p>
                     <p className="text-sm text-muted-foreground mt-1">
                       {language === 'en'
                         ? 'We\'ll respond within 24 hours'
@@ -104,8 +104,8 @@ export default function Contact() {
                     </p>
                     <p className="text-sm text-muted-foreground mt-1">
                       {language === 'en'
-                        ? 'Available Mon-Fri, 9am-6pm EST'
-                        : 'Disponible lun-ven, 9h-18h EST'}
+                        ? 'Available Mon-Fri, 9am-6pm CET'
+                        : 'Disponible lun-ven, 9h-18h CET'}
                     </p>
                   </div>
                 </div>
@@ -122,11 +122,11 @@ export default function Contact() {
                       {language === 'en' ? 'Based in' : 'Basé à'}
                     </h3>
                     <p className="text-muted-foreground">
-                      {language === 'en' ? 'San Francisco, CA' : 'San Francisco, CA'}
+                      {language === 'en' ? 'Paris, France' : 'Paris, France'}
                     </p>
                     <p className="text-sm text-muted-foreground mt-1">
                       {language === 'en'
-                        ? 'Serving SaaS & e-commerce globally'
+                        ? 'Serving SaaS and e-commerce companies globally'
                         : 'Servant les SaaS et e-commerce mondialement'}
                     </p>
                   </div>
