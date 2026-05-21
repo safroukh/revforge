@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { useTranslation } from "@/hooks/useTranslation";
 import { getBlogArticles } from "@/lib/blog-data";
 import { Link } from "wouter";
@@ -10,13 +11,25 @@ export default function Blog() {
   const { t, language } = useTranslation();
   const articles = getBlogArticles(language);
   const categories = Array.from(new Set(articles.map(a => a.category)));
+  const [newsletterEmail, setNewsletterEmail] = useState("");
+
+  const handleNewsletterSubmit = (event: React.FormEvent) => {
+    event.preventDefault();
+    const subject = "demande d'abonnement à la newsletter";
+    const body = [
+      "Demande d'abonnement à la newsletter",
+      "",
+      `Email : ${newsletterEmail || '-'}`,
+    ].join('\n');
+    window.location.href = `mailto:contact@revforge.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+  };
 
   const blogSchema = {
     "@context": "https://schema.org",
     "@type": "Blog",
     "name": "RevForge Blog",
     "description": "Expert insights on Stripe payment optimization, failed payment recovery, and revenue optimization for SaaS and e-commerce.",
-    "url": "https://revforge.io/blog"
+    "url": "https://revforge.fr/blog"
   };
 
   return (
@@ -24,7 +37,7 @@ export default function Blog() {
       <SEO
         title={language === 'en' ? 'Blog - RevForge | Stripe Payment Optimization Insights' : 'Blog - RevForge | Conseils sur l\'optimisation des paiements Stripe'}
         description={language === 'en' ? 'Expert insights on Stripe optimization, payment strategy, and revenue recovery. Learn how to reduce failed payments and improve LTV.' : 'Conseils d\'experts sur l\'optimisation de Stripe, la stratégie de paiement et la récupération de revenus. Apprenez à réduire les paiements échoués.'}
-        canonical="https://revforge.io/blog"
+        canonical="https://revforge.fr/blog"
         schema={blogSchema}
       />
       <Header />
@@ -133,16 +146,18 @@ export default function Blog() {
               ? 'Get the latest insights on payment optimization and revenue recovery delivered to your inbox.'
               : 'Recevez les dernières informations sur l\'optimisation des paiements et la récupération de revenus dans votre boîte de réception.'}
           </p>
-          <div className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
+          <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
+              value={newsletterEmail}
+              onChange={(event) => setNewsletterEmail(event.target.value)}
               placeholder={language === 'en' ? 'Enter your email' : 'Entrez votre e-mail'}
               className="flex-1 px-4 py-3 rounded-lg border border-gray-600 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            <button className="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition">
+            <button type="submit" className="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition">
               {language === 'en' ? 'Subscribe' : 'S\'abonner'}
             </button>
-          </div>
+          </form>
         </div>
       </div>
     </div>

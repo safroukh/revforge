@@ -29,15 +29,6 @@ export default function FinalCTA() {
                 <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
               </Button>
             </a>
-            <a href="/blog">
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-foreground hover:bg-foreground/10 text-foreground rounded-lg font-semibold"
-              >
-                {t('finalCTA.cta2')}
-              </Button>
-            </a>
           </div>
 
           {/* Trust Indicators */}
@@ -119,7 +110,7 @@ export default function FinalCTA() {
               <a href="https://linkedin.com" aria-label="LinkedIn" className="text-white/60 hover:text-white transition">
                 <Linkedin size={18} />
               </a>
-              <a href="mailto:contact@revforge.xyz" aria-label="Email" className="text-white/60 hover:text-white transition">
+              <a href="mailto:contact@revforge.fr" aria-label="Email" className="text-white/60 hover:text-white transition">
                 <Mail size={18} />
               </a>
             </div>

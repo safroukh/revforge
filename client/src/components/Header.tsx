@@ -15,12 +15,19 @@ export default function Header() {
     setLanguage(newLang);
   };
 
+  const handleLogoClick = () => {
+    if (window.location.pathname === "/") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+    setIsMenuOpen(false);
+  };
+
   return (
     <header className="fixed top-0 w-full bg-background/95 backdrop-blur-md border-b border-border z-50">
       <div className="container flex items-center justify-between h-16">
         {/* Logo */}
         <Link href="/">
-          <a className="flex items-center gap-2 hover:opacity-80 transition">
+          <a onClick={handleLogoClick} className="flex items-center gap-2 hover:opacity-80 transition">
             <BrandLogo />
           </a>
         </Link>

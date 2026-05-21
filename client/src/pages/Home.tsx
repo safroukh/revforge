@@ -30,12 +30,12 @@ export default function Home() {
     "@type": "SoftwareApplication",
     "name": "RevForge",
     "description": "Stripe audit and payment optimization service for SaaS and e-commerce companies. Recover lost revenue from failed payments and billing misconfigurations.",
-    "url": "https://revforge.io",
+    "url": "https://revforge.fr",
     "applicationCategory": "BusinessApplication",
     "offers": {
       "@type": "Offer",
       "price": "0",
-      "priceCurrency": "USD",
+      "priceCurrency": "EUR",
       "description": "Free audit preview"
     },
     "aggregateRating": {
@@ -50,7 +50,7 @@ export default function Home() {
       <SEO
         title="RevForge - Stripe Audit & Payment Optimization | Recover Lost Revenue"
         description="Stop losing revenue on Stripe. RevForge identifies hidden payment failures, retry logic issues, and billing misconfigurations. Get a free audit today."
-        canonical="https://revforge.io"
+        canonical="https://revforge.fr"
         schema={homeSchema}
       />
       <Header />

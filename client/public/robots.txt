@@ -4,4 +4,4 @@ Allow: /blog
 Allow: /contact
 Disallow: /404
 
-Sitemap: https://revforge.io/sitemap.xml
+Sitemap: https://revforge.fr/sitemap.xml

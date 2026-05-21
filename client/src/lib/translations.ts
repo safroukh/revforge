@@ -172,7 +172,7 @@ export const translations = {
         {
           name: 'Deep Audit & Optimization',
           description: 'Full analysis with actionable recommendations',
-          price: '$1,900',
+          price: '€1,900',
           period: 'one-time',
           cta: 'Schedule Deep Audit',
           features: [
@@ -188,7 +188,7 @@ export const translations = {
         {
           name: 'Ongoing Optimization',
           description: 'Continuous monitoring and improvement',
-          price: '$900',
+          price: '€900',
           period: '/month',
           cta: 'Contact Sales',
           features: [
@@ -211,7 +211,6 @@ export const translations = {
       title: 'Stop Losing Money on Stripe',
       subtitle: 'Get a free audit today and discover exactly how much revenue you\'re leaving on the table. No credit card required.',
       cta1: 'Get Your Free Audit',
-      cta2: 'Schedule a Call',
       trust1: 'No credit card required',
       trust2: '30 min setup',
       trust3: 'Secure Stripe connection',
@@ -455,7 +454,6 @@ export const translations = {
       title: 'Arrêtez de perdre de l\'argent sur Stripe',
       subtitle: 'Obtenez un audit gratuit dès aujourd\'hui et découvrez exactement combien de revenus vous laissez sur la table. Aucune carte de crédit requise.',
       cta1: 'Obtenir votre audit gratuit',
-      cta2: 'Planifier un appel',
       trust1: 'Aucune carte de crédit requise',
       trust2: 'Configuration en 30 min',
       trust3: 'Connexion Stripe sécurisée',

@@ -13,11 +13,11 @@ export default function Contact() {
     "@type": "LocalBusiness",
     "name": "RevForge",
     "description": "Stripe audit and payment optimization service. Book a free audit.",
-    "url": "https://revforge.io/contact",
+    "url": "https://revforge.fr/contact",
     "contactPoint": {
       "@type": "ContactPoint",
       "contactType": "Sales",
-      "email": "contact@revforge.xyz"
+      "email": "contact@revforge.fr"
     }
   };
 
@@ -26,7 +26,7 @@ export default function Contact() {
       <SEO
         title={language === 'en' ? 'Contact RevForge - Book Your Free Stripe Audit' : 'Contactez RevForge - Réservez votre audit Stripe gratuit'}
         description={language === 'en' ? 'Get a free Stripe audit from RevForge. Our team will analyze your payment setup and identify hidden revenue opportunities.' : 'Obtenez un audit Stripe gratuit de RevForge. Notre équipe analysera votre configuration de paiement et identifiera les opportunités de revenus cachées.'}
-        canonical="https://revforge.io/contact"
+        canonical="https://revforge.fr/contact"
         schema={contactSchema}
       />
       <Header />
@@ -77,7 +77,7 @@ export default function Contact() {
                     <h3 className="text-lg font-semibold text-foreground mb-1">
                       {language === 'en' ? 'Email' : 'Email'}
                     </h3>
-                    <p className="text-muted-foreground">contact@revforge.xyz</p>
+                    <p className="text-muted-foreground">contact@revforge.fr</p>
                     <p className="text-sm text-muted-foreground mt-1">
                       {language === 'en'
                         ? 'We\'ll respond within 24 hours'

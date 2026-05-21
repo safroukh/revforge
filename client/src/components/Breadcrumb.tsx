@@ -26,7 +26,7 @@ export default function Breadcrumb({ items, currentPage }: BreadcrumbProps) {
           "@type": "ListItem",
           "position": index + 1,
           "name": item.label,
-          "item": `https://revforge.io${item.href}`
+          "item": `https://revforge.fr${item.href}`
         })),
         {
           "@type": "ListItem",
