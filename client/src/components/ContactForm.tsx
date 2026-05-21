@@ -5,8 +5,6 @@ import { useAnalytics } from "@/hooks/useAnalytics";
 import { Mail, CheckCircle, AlertCircle } from "lucide-react";
 import { toast } from "sonner";
 
-const CONTACT_EMAIL = "contact@revforge.fr";
-
 interface FormData {
   name: string;
   email: string;
@@ -82,20 +80,20 @@ export default function ContactForm() {
     setIsLoading(true);
 
     try {
-      const subject =
-        language === 'en'
-          ? 'Free Stripe audit request'
-          : 'Demande d\'audit Stripe gratuit';
-      const body = [
-        language === 'en' ? 'New audit request:' : 'Nouvelle demande d\'audit :',
-        '',
-        `${language === 'en' ? 'Full name' : 'Nom complet'} : ${formData.name}`,
-        `Email : ${formData.email}`,
-        `${language === 'en' ? 'Company' : 'Entreprise'} : ${formData.company}`,
-        `ARR : ${formData.arr}`,
-        `${language === 'en' ? 'Message' : 'Message'} : ${formData.message || '-'}`,
-      ].join('\n');
-      const mailtoUrl = `mailto:${CONTACT_EMAIL}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+      const response = await fetch('/api/contact', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          ...formData,
+          language,
+        }),
+      });
+
+      if (!response.ok) {
+        throw new Error('Unable to send contact request');
+      }
 
       // Track form submission in Google Analytics
       trackFormSubmission('contact_form', {
@@ -107,14 +105,12 @@ export default function ContactForm() {
       // Track conversion
       trackConversion('lead_capture', 1);
 
-      window.location.href = mailtoUrl;
-
       // Show success state
       setIsSubmitted(true);
       toast.success(
         language === 'en'
-          ? 'Your email client is opening with the audit request.'
-          : 'Votre client email s\'ouvre avec la demande d\'audit.'
+          ? 'Thank you! Your audit request has been sent.'
+          : 'Merci ! Votre demande d\'audit a bien été envoyée.'
       );
 
       // Reset form after 3 seconds
@@ -144,12 +140,12 @@ export default function ContactForm() {
       <div className="flex flex-col items-center justify-center py-12 px-4">
         <CheckCircle size={48} className="text-primary mb-4" />
         <h3 className="text-2xl font-bold text-foreground mb-2">
-          {language === 'en' ? 'Email Ready' : 'Email prêt'}
+          {language === 'en' ? 'Request Sent' : 'Demande envoyée'}
         </h3>
         <p className="text-muted-foreground text-center max-w-md">
           {language === 'en'
-            ? 'Your email client should open with the completed audit request.'
-            : 'Votre client email devrait s\'ouvrir avec la demande d\'audit complétée.'}
+            ? 'We received your information and will contact you within 24 hours.'
+            : 'Nous avons reçu vos informations et vous contacterons dans les 24 heures.'}
         </p>
       </div>
     );
