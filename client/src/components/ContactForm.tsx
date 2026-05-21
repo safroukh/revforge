@@ -92,7 +92,8 @@ export default function ContactForm() {
       });
 
       if (!response.ok) {
-        throw new Error('Unable to send contact request');
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.error || 'Unable to send contact request');
       }
 
       // Track form submission in Google Analytics
@@ -125,10 +126,16 @@ export default function ContactForm() {
         setIsSubmitted(false);
       }, 3000);
     } catch (error) {
+      const message = error instanceof Error ? error.message : '';
+      const isMissingEmailConfig = message === 'Email service is not configured';
       toast.error(
-        language === 'en'
-          ? 'Something went wrong. Please try again.'
-          : 'Une erreur s\'est produite. Veuillez réessayer.'
+        isMissingEmailConfig
+          ? language === 'en'
+            ? 'Email sending is not configured yet. Please add RESEND_API_KEY in Render.'
+            : 'L\'envoi email n\'est pas encore configuré. Ajoutez RESEND_API_KEY dans Render.'
+          : language === 'en'
+            ? 'Something went wrong. Please try again.'
+            : 'Une erreur s\'est produite. Veuillez réessayer.'
       );
     } finally {
       setIsLoading(false);

@@ -9,6 +9,13 @@ import BrandLogo from "./BrandLogo";
 export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const { t, language, setLanguage } = useTranslation();
+  const sectionLinks = [
+    { href: "/#problem", label: t('header.problem') },
+    { href: "/#solution", label: t('header.solution') },
+    { href: "/#how-it-works", label: t('header.howItWorks') },
+    { href: "/#results", label: t('header.results') },
+    { href: "/#pricing", label: t('header.pricing') },
+  ];
 
   const toggleLanguage = () => {
     const newLang: Language = language === 'en' ? 'fr' : 'en';
@@ -34,21 +41,11 @@ export default function Header() {
 
         {/* Desktop Navigation */}
         <nav className="hidden md:flex items-center gap-8">
-          <a href="#problem" className="text-sm text-muted-foreground hover:text-foreground transition">
-            {t('header.problem')}
-          </a>
-          <a href="#solution" className="text-sm text-muted-foreground hover:text-foreground transition">
-            {t('header.solution')}
-          </a>
-          <a href="#how-it-works" className="text-sm text-muted-foreground hover:text-foreground transition">
-            {t('header.howItWorks')}
-          </a>
-          <a href="#results" className="text-sm text-muted-foreground hover:text-foreground transition">
-            {t('header.results')}
-          </a>
-          <a href="#pricing" className="text-sm text-muted-foreground hover:text-foreground transition">
-            {t('header.pricing')}
-          </a>
+          {sectionLinks.map((link) => (
+            <a key={link.href} href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition">
+              {link.label}
+            </a>
+          ))}
         </nav>
 
         {/* CTA Button & Language Switcher */}
@@ -85,21 +82,11 @@ export default function Header() {
       {isMenuOpen && (
         <div className="md:hidden border-t border-border bg-background">
           <nav className="container py-4 flex flex-col gap-4">
-            <a href="#problem" onClick={() => setIsMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition">
-              {t('header.problem')}
-            </a>
-            <a href="#solution" onClick={() => setIsMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition">
-              {t('header.solution')}
-            </a>
-            <a href="#how-it-works" onClick={() => setIsMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition">
-              {t('header.howItWorks')}
-            </a>
-            <a href="#results" onClick={() => setIsMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition">
-              {t('header.results')}
-            </a>
-            <a href="#pricing" onClick={() => setIsMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition">
-              {t('header.pricing')}
-            </a>
+            {sectionLinks.map((link) => (
+              <a key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition">
+                {link.label}
+              </a>
+            ))}
             <a href="/contact" className="w-full">
               <Button className="w-full bg-primary hover:bg-primary/90 text-black rounded-lg font-medium">
                 {t('header.getAudit')}
