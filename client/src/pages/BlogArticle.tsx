@@ -83,7 +83,9 @@ export default function BlogArticle() {
       <SEO
         title={`${article.title} | RevForge Blog`}
         description={article.excerpt}
-        canonical={`https://revforge.fr/blog/${article.slug}`}
+        canonical={`https://www.revforge.fr/blog/${article.slug}`}
+        ogImage={article.image}
+        ogType="article"
         schema={articleSchema}
       />
       <Header />
