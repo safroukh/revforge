@@ -15,9 +15,8 @@ export function LanguageProvider({ children }: { children: ReactNode }) {
     if (saved === 'fr' || saved === 'en') {
       return saved;
     }
-    // Default to browser language or English
-    const browserLang = navigator.language.split('-')[0];
-    return browserLang === 'fr' ? 'fr' : 'en';
+    // Default to French for first-time visitors.
+    return 'fr';
   });
 
   const handleSetLanguage = (lang: Language) => {
