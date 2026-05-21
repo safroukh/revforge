@@ -13,6 +13,11 @@ type ContactPayload = {
   language?: string;
 };
 
+type NewsletterPayload = {
+  email?: string;
+  language?: string;
+};
+
 function isValidEmail(email: string) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
@@ -104,6 +109,60 @@ export function registerContactRoutes(app: Express) {
           `ARR : ${data.arr}`,
           `Langue : ${data.language}`,
           `Message : ${data.message || "-"}`,
+        ].join("\n"),
+      }),
+    });
+
+    if (!response.ok) {
+      const errorText = await response.text();
+      console.error("Resend API error:", errorText);
+      return res.status(502).json({ error: "Unable to send email" });
+    }
+
+    return res.status(200).json({ ok: true });
+  });
+
+  app.post("/api/newsletter", async (req: Request, res: Response) => {
+    const payload = req.body as NewsletterPayload;
+    const email = text(payload.email);
+    const language = text(payload.language) || "fr";
+
+    if (!email) {
+      return res.status(400).json({ error: "Missing email" });
+    }
+
+    if (!isValidEmail(email)) {
+      return res.status(400).json({ error: "Invalid email" });
+    }
+
+    if (!process.env.RESEND_API_KEY) {
+      return res.status(500).json({ error: "Email service is not configured" });
+    }
+
+    const subject = "demande d'inscription à la newsletter";
+    const response = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${process.env.RESEND_API_KEY}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        from: RESEND_FROM_EMAIL,
+        to: CONTACT_EMAIL,
+        reply_to: email,
+        subject,
+        html: `
+          <div style="font-family: Arial, sans-serif; color: #111827; line-height: 1.5;">
+            <h2>Demande d'inscription à la newsletter</h2>
+            <p><strong>Email renseigné par le visiteur :</strong> ${escapeHtml(email)}</p>
+            <p><strong>Langue :</strong> ${escapeHtml(language)}</p>
+          </div>
+        `,
+        text: [
+          "Demande d'inscription à la newsletter",
+          "",
+          `Email renseigné par le visiteur : ${email}`,
+          `Langue : ${language}`,
         ].join("\n"),
       }),
     });

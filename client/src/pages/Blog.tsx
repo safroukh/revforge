@@ -6,22 +6,57 @@ import { ArrowRight, Clock, User } from "lucide-react";
 import SEO from "@/components/SEO";
 import Header from "@/components/Header";
 import Breadcrumb from "@/components/Breadcrumb";
+import { toast } from "sonner";
 
 export default function Blog() {
   const { t, language } = useTranslation();
   const articles = getBlogArticles(language);
   const categories = Array.from(new Set(articles.map(a => a.category)));
   const [newsletterEmail, setNewsletterEmail] = useState("");
+  const [isNewsletterSubmitting, setIsNewsletterSubmitting] = useState(false);
 
-  const handleNewsletterSubmit = (event: React.FormEvent) => {
+  const handleNewsletterSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
-    const subject = "demande d'abonnement à la newsletter";
-    const body = [
-      "Demande d'abonnement à la newsletter",
-      "",
-      `Email : ${newsletterEmail || '-'}`,
-    ].join('\n');
-    window.location.href = `mailto:contact@revforge.fr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    setIsNewsletterSubmitting(true);
+
+    try {
+      const response = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          email: newsletterEmail,
+          language,
+        }),
+      });
+
+      if (!response.ok) {
+        const result = await response.json().catch(() => null);
+        throw new Error(result?.error || "Unable to send newsletter request");
+      }
+
+      toast.success(
+        language === "en"
+          ? "Your subscription request has been sent."
+          : "Votre demande d'inscription a bien été envoyée."
+      );
+      setNewsletterEmail("");
+    } catch (error) {
+      const message = error instanceof Error ? error.message : "";
+      const isMissingEmailConfig = message === "Email service is not configured";
+      toast.error(
+        isMissingEmailConfig
+          ? language === "en"
+            ? "Email sending is not configured yet. Please add RESEND_API_KEY in Render."
+            : "L'envoi email n'est pas encore configuré. Ajoutez RESEND_API_KEY dans Render."
+          : language === "en"
+            ? "Something went wrong. Please try again."
+            : "Une erreur s'est produite. Veuillez réessayer."
+      );
+    } finally {
+      setIsNewsletterSubmitting(false);
+    }
   };
 
   const blogSchema = {
@@ -149,13 +184,16 @@ export default function Blog() {
           <form onSubmit={handleNewsletterSubmit} className="flex flex-col sm:flex-row gap-3 max-w-md mx-auto">
             <input
               type="email"
+              required
               value={newsletterEmail}
               onChange={(event) => setNewsletterEmail(event.target.value)}
               placeholder={language === 'en' ? 'Enter your email' : 'Entrez votre e-mail'}
               className="flex-1 px-4 py-3 rounded-lg border border-gray-600 bg-slate-800 text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-primary"
             />
             <button type="submit" className="px-6 py-3 bg-primary hover:bg-primary/90 text-white rounded-lg font-semibold transition">
-              {language === 'en' ? 'Subscribe' : 'S\'abonner'}
+              {isNewsletterSubmitting
+                ? language === 'en' ? 'Sending...' : 'Envoi...'
+                : language === 'en' ? 'Subscribe' : 'S\'abonner'}
             </button>
           </form>
         </div>
