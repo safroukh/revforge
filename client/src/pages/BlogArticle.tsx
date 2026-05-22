@@ -14,14 +14,14 @@ export default function BlogArticle() {
   const [match, params] = useRoute("/blog/:slug");
   const { language } = useTranslation();
   const [copied, setCopied] = useState(false);
-
-  if (!match) return null;
-
-  const article = getBlogArticleBySlug(params?.slug, language);
+  const slug = params?.slug;
+  const article = match && slug ? getBlogArticleBySlug(slug, language) : undefined;
 
   useEffect(() => {
     window.scrollTo(0, 0);
-  }, [params?.slug]);
+  }, [slug]);
+
+  if (!match) return null;
 
   const handleShare = (platform: string) => {
     const url = typeof window !== 'undefined' ? window.location.href : '';
