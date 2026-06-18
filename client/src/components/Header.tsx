@@ -15,6 +15,7 @@ export default function Header() {
     { href: "/#how-it-works", label: t('header.howItWorks') },
     { href: "/#results", label: t('header.results') },
     { href: "/#pricing", label: t('header.pricing') },
+    { href: "/blog", label: t('header.blog') },
   ];
 
   const toggleLanguage = () => {
@@ -40,7 +41,7 @@ export default function Header() {
         </Link>
 
         {/* Desktop Navigation */}
-        <nav className="hidden md:flex items-center gap-8">
+        <nav className="hidden lg:flex items-center gap-6 xl:gap-8">
           {sectionLinks.map((link) => (
             <a key={link.href} href={link.href} className="text-sm text-muted-foreground hover:text-foreground transition">
               {link.label}
@@ -70,7 +71,7 @@ export default function Header() {
 
           {/* Mobile Menu Toggle */}
           <button
-            className="md:hidden p-2 hover:bg-secondary rounded-lg transition"
+            className="lg:hidden p-2 hover:bg-secondary rounded-lg transition"
             onClick={() => setIsMenuOpen(!isMenuOpen)}
           >
             {isMenuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -80,7 +81,7 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMenuOpen && (
-        <div className="md:hidden border-t border-border bg-background">
+        <div className="lg:hidden border-t border-border bg-background">
           <nav className="container py-4 flex flex-col gap-4">
             {sectionLinks.map((link) => (
               <a key={link.href} href={link.href} onClick={() => setIsMenuOpen(false)} className="text-sm text-muted-foreground hover:text-foreground transition">

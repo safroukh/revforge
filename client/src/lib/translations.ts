@@ -9,6 +9,7 @@ export const translations = {
       howItWorks: 'How It Works',
       results: 'Results',
       pricing: 'Pricing',
+      blog: 'Blog',
       getAudit: 'Get Free Audit',
     },
 
@@ -252,6 +253,7 @@ export const translations = {
       howItWorks: 'Comment ça marche',
       results: 'Résultats',
       pricing: 'Tarifs',
+      blog: 'Blog',
       getAudit: 'Audit gratuit',
     },
 
