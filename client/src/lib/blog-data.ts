@@ -10,6 +10,9 @@ export interface BlogArticle {
   category: string;
   tags: string[];
   image: string;
+  imageWidth?: number;
+  imageHeight?: number;
+  imageType?: string;
 }
 
 export const blogArticles = {
@@ -375,6 +378,247 @@ Your Stripe configuration is the foundation of your payment operations. Taking t
       tags: ['Stripe', 'Configuration', 'Audit', 'Setup'],
       image: 'https://d2xsxph8kpxj0f.cloudfront.net/114882360/9WmLTxwCNsoDeqoqcNTHiT/revforge-dashboard-FBzpQAAYJUFzaf5PRV4rWx.webp',
     },
+    {
+      id: '5',
+      slug: 'fraud-prevention-revenue-protection',
+      title: 'Fraud Prevention & Revenue Protection: Safeguard Your SaaS Revenue',
+      excerpt: 'Learn how to detect, prevent, and respond to payment fraud while protecting your revenue and customer trust.',
+      content: `# Fraud Prevention & Revenue Protection: Safeguard Your SaaS Revenue
+
+Payment fraud is a growing threat to SaaS businesses. While most companies focus on optimizing legitimate payments, fraudsters are becoming increasingly sophisticated. A single major fraud incident can cost thousands in chargebacks, refunds, and lost customer trust.
+
+## The True Cost of Payment Fraud
+
+Fraud isn't just about the stolen amount. The real costs include:
+
+### Direct Costs
+
+- Stolen transaction amount
+- Chargeback fees ($15-$100 per dispute)
+- Refund processing costs
+
+### Indirect Costs
+
+- Customer trust erosion
+- Compliance violations and fines
+- Operational overhead for investigation and prevention
+- Reputational damage
+- Lost legitimate customers due to false positives
+
+### Industry Statistics
+
+- Average fraud loss: **0.5-1.5%** of total transaction volume
+- For a $10M ARR SaaS: **$50K-$150K** annual fraud loss
+- Visa chargeback ratio threshold: **1%**, with a risk of penalties
+
+## Types of Payment Fraud
+
+### 1. Card-Not-Present (CNP) Fraud
+
+**What:** Stolen card details used for online purchases.
+
+**Detection:** Unusual patterns, high-risk geographies, and velocity checks.
+
+**Prevention:** 3D Secure, AVS verification, and CVV validation.
+
+### 2. Account Takeover (ATO)
+
+**What:** An attacker gains access to a legitimate customer account.
+
+**Detection:** Unusual login patterns, device fingerprinting, and behavioral analysis.
+
+**Prevention:** Strong authentication, 2FA, and suspicious activity alerts.
+
+### 3. Friendly Fraud (Chargeback Fraud)
+
+**What:** A customer claims a transaction was unauthorized when it was not.
+
+**Detection:** High chargeback ratios, repeat offenders, and pattern analysis.
+
+**Prevention:** Clear communication, detailed receipts, and customer verification.
+
+### 4. Synthetic Fraud
+
+**What:** A fraudster creates a fake identity using a mix of real and fabricated information.
+
+**Detection:** Inconsistent data and new accounts with high transaction volume.
+
+**Prevention:** KYC verification, velocity limits, and behavioral analysis.
+
+### 5. Subscription Fraud
+
+**What:** A fraudster signs up for a trial or subscription with a stolen card.
+
+**Detection:** Trial-to-paid conversion patterns and geographic anomalies.
+
+**Prevention:** Stricter trial verification, email confirmation, and velocity limits.
+
+## Fraud Detection Strategies
+
+### 1. Implement 3D Secure Authentication
+
+- Adds an extra verification layer
+- Reduces fraud by **50-70%**
+- Shifts liability to the card issuer in many cases
+- Trade-off: a slight increase in friction
+
+**Best practice:** Enable 3D Secure for high-risk transactions, including new customers, large amounts, and high-risk geographies.
+
+### 2. Use Velocity Checks
+
+Monitor transaction patterns such as:
+
+- Multiple transactions from the same card within a short period
+- Multiple failed attempts before success
+- Unusual transaction amounts or frequencies
+
+**Action:** Flag or block suspicious patterns automatically.
+
+### 3. Geographic and Device Fingerprinting
+
+Track:
+
+- The customer's typical location and device
+- Deviations from normal patterns
+- IP address reputation
+- Device consistency across transactions
+
+**Action:** Require additional verification when anomalies appear.
+
+### 4. Machine Learning Models
+
+Leverage AI to detect:
+
+- Subtle fraud patterns humans miss
+- New fraud techniques automatically
+- Anomalies in customer behavior
+
+Options include Stripe Radar, third-party fraud detection services, and custom machine learning models when scale justifies them.
+
+### 5. Manual Review Processes
+
+For high-risk transactions:
+
+- Flag the payment for manual review before charging
+- Contact the customer for verification
+- Implement approval workflows
+
+This is especially useful for first-time customers, large transactions, geographic anomalies, and high chargeback risk.
+
+## Stripe Fraud Prevention Tools
+
+### Stripe Radar
+
+Stripe Radar provides built-in machine learning fraud detection, including real-time fraud scoring, customizable rules, chargeback prediction, and integration with 3D Secure.
+
+**Recommendation:** Enable Radar for all businesses.
+
+### 3D Secure (3DS)
+
+3D Secure adds customer verification, can shift liability, and significantly reduces fraud.
+
+**Recommendation:** Enable it for high-risk transactions.
+
+### Radar Rules
+
+The custom rules engine can block, allow, or review transactions based on conditions, velocity checks, geographic restrictions, and metadata.
+
+Example rules:
+
+- Block after five or more failed attempts within one hour
+- Block transactions from a high-risk country
+- Review a large purchase from a first-time customer
+
+## Chargeback Management
+
+### Prevention
+
+- **Clear communication:** Use explicit billing descriptions
+- **Easy cancellation:** Make subscriptions simple to cancel
+- **Detailed receipts:** Include all relevant transaction information
+- **Customer verification:** Confirm identity for large transactions
+- **Responsive support:** Resolve customer issues quickly
+
+### Response
+
+When chargebacks occur:
+
+1. **Gather evidence** by collecting all transaction details
+2. **Document communication** with the customer
+3. **Submit the dispute** within Stripe's timeframe
+4. **Track patterns** and monitor repeat offenders
+
+### Acceptable Chargeback Ratios
+
+- Visa: below **0.9%**, although thresholds vary by region
+- Mastercard: below **1.5%**
+- Potential penalties: **$25-$100 per chargeback**, plus possible account restrictions
+
+## Implementation Roadmap
+
+### Phase 1: Foundation (Weeks 1-2)
+
+- Enable Stripe Radar
+- Enable 3D Secure for high-risk transactions
+- Set up basic fraud rules
+- Configure chargeback notifications
+
+### Phase 2: Enhancement (Weeks 3-4)
+
+- Implement velocity checks
+- Add geographic restrictions
+- Set up manual review workflows
+- Train the team on fraud response
+
+### Phase 3: Optimization (Month 2+)
+
+- Analyze fraud patterns
+- Refine rules based on data
+- Implement device fingerprinting
+- Consider advanced machine learning models
+
+## Measuring Fraud Prevention Success
+
+Key metrics include:
+
+- **Fraud Rate:** Fraudulent transactions / total transactions. Target: below 0.5%
+- **Chargeback Ratio:** Chargebacks / total transactions. Target: below 0.9%
+- **False Positive Rate:** Legitimate transactions blocked. Target: below 2%
+- **Fraud Detection Latency:** Time to identify fraud. Target: below one second
+- **Chargeback Win Rate:** Disputes won / total chargebacks. Target: above 70%
+
+## Common Mistakes to Avoid
+
+- Ignoring fraud until it is too late
+- Over-blocking legitimate transactions
+- Failing to monitor chargeback ratios
+- Using unclear billing descriptions
+- Keeping insufficient documentation
+- Ignoring geographic patterns
+
+## Expected Results
+
+Companies implementing comprehensive fraud prevention can see:
+
+- **50-70% reduction** in fraud incidents
+- **$50K-$500K annual** fraud loss prevention, depending on scale
+- Improved customer trust and retention
+- Lower chargeback ratios and penalties
+- Better compliance with payment networks
+
+## Conclusion
+
+Fraud prevention isn't a one-time implementation; it is an ongoing process. By combining Stripe's built-in tools with smart business practices, you can significantly reduce fraud while maintaining a smooth customer experience. The investment in fraud prevention pays for itself many times over through prevented losses and maintained customer trust.`,
+      author: 'Alex Thompson',
+      date: '2026-04-20',
+      readTime: 10,
+      category: 'Security & Compliance',
+      tags: ['Fraud', 'Security', 'Chargeback', 'Risk Management'],
+      image: '/blog-fraud-prevention.jpg',
+      imageWidth: 1600,
+      imageHeight: 900,
+      imageType: 'image/jpeg',
+    },
   ],
 
   fr: [
@@ -739,11 +983,254 @@ Votre configuration Stripe est la base de vos opérations de paiement. Prendre l
       tags: ['Stripe', 'Configuration', 'Audit', 'Configuration'],
       image: 'https://d2xsxph8kpxj0f.cloudfront.net/114882360/9WmLTxwCNsoDeqoqcNTHiT/revforge-dashboard-FBzpQAAYJUFzaf5PRV4rWx.webp',
     },
+    {
+      id: '5',
+      slug: 'fraud-prevention-revenue-protection',
+      title: 'Prévention de la fraude et protection des revenus SaaS',
+      excerpt: 'Découvrez comment détecter, prévenir et traiter la fraude aux paiements tout en protégeant vos revenus et la confiance de vos clients.',
+      content: `# Prévention de la fraude et protection des revenus SaaS
+
+La fraude aux paiements représente une menace croissante pour les entreprises SaaS. Alors que la plupart des sociétés se concentrent sur l'optimisation des paiements légitimes, les fraudeurs emploient des méthodes de plus en plus sophistiquées. Un seul incident majeur peut coûter des milliers d'euros en rétrofacturations, remboursements et perte de confiance des clients.
+
+## Le coût réel de la fraude aux paiements
+
+La fraude ne se limite pas au montant dérobé. Ses coûts réels comprennent :
+
+### Coûts directs
+
+- Le montant de la transaction frauduleuse
+- Les frais de rétrofacturation, généralement compris entre 15 € et 100 € par litige
+- Les coûts de traitement des remboursements
+
+### Coûts indirects
+
+- L'érosion de la confiance des clients
+- Les violations de conformité et les amendes
+- La charge opérationnelle liée aux enquêtes et à la prévention
+- Les dommages à la réputation
+- La perte de clients légitimes causée par les faux positifs
+
+### Données du secteur
+
+- Perte moyenne liée à la fraude : **0,5 à 1,5%** du volume total des transactions
+- Pour un SaaS réalisant 10 M€ d'ARR : **50 000 € à 150 000 €** de pertes annuelles
+- Seuil du ratio de rétrofacturation Visa : environ **1%**, avec un risque de pénalités
+
+## Les différents types de fraude aux paiements
+
+### 1. Fraude sans présentation de carte (CNP)
+
+**Principe :** Des données de carte volées sont utilisées pour effectuer des achats en ligne.
+
+**Détection :** Comportements inhabituels, zones géographiques à risque et contrôles de vélocité.
+
+**Prévention :** 3D Secure, vérification AVS et validation du CVV.
+
+### 2. Prise de contrôle de compte (ATO)
+
+**Principe :** Un attaquant accède au compte d'un client légitime.
+
+**Détection :** Connexions inhabituelles, empreinte de l'appareil et analyse comportementale.
+
+**Prévention :** Authentification forte, double authentification et alertes d'activité suspecte.
+
+### 3. Fraude amicale ou fraude à la rétrofacturation
+
+**Principe :** Un client affirme qu'une transaction était non autorisée alors qu'elle était légitime.
+
+**Détection :** Ratio de rétrofacturation élevé, récidivistes et analyse des tendances.
+
+**Prévention :** Communication claire, reçus détaillés et vérification du client.
+
+### 4. Fraude synthétique
+
+**Principe :** Le fraudeur crée une fausse identité en combinant des informations réelles et fictives.
+
+**Détection :** Données incohérentes et nouveaux comptes générant rapidement un volume élevé.
+
+**Prévention :** Vérification KYC, limites de vélocité et analyse comportementale.
+
+### 5. Fraude à l'abonnement
+
+**Principe :** Un fraudeur souscrit à un essai ou à un abonnement avec une carte volée.
+
+**Détection :** Tendances de conversion essai-payant et anomalies géographiques.
+
+**Prévention :** Vérification renforcée des essais, confirmation par email et limites de vélocité.
+
+## Stratégies de détection de la fraude
+
+### 1. Mettre en place l'authentification 3D Secure
+
+- Ajoute une couche de vérification supplémentaire
+- Réduit la fraude de **50 à 70%**
+- Transfère souvent la responsabilité à l'émetteur de la carte
+- Contrepartie : une légère augmentation de la friction
+
+**Bonne pratique :** Activez 3D Secure pour les transactions à risque, notamment les nouveaux clients, les montants élevés et les zones géographiques sensibles.
+
+### 2. Utiliser des contrôles de vélocité
+
+Surveillez notamment :
+
+- Plusieurs transactions avec la même carte sur une courte période
+- Plusieurs tentatives échouées avant une réussite
+- Des montants ou fréquences de transaction inhabituels
+
+**Action :** Signalez ou bloquez automatiquement les comportements suspects.
+
+### 3. Analyser la géographie et l'empreinte des appareils
+
+Suivez :
+
+- La localisation et l'appareil habituellement utilisés par le client
+- Les écarts par rapport aux comportements normaux
+- La réputation de l'adresse IP
+- La cohérence de l'appareil entre les transactions
+
+**Action :** Demandez une vérification supplémentaire lorsqu'une anomalie apparaît.
+
+### 4. Exploiter les modèles de machine learning
+
+L'intelligence artificielle peut détecter :
+
+- Des schémas subtils qui échappent aux contrôles humains
+- De nouvelles techniques de fraude
+- Des anomalies dans le comportement des clients
+
+Les options comprennent Stripe Radar, les services spécialisés de détection de fraude et, lorsque l'échelle le justifie, des modèles sur mesure.
+
+### 5. Mettre en place une vérification manuelle
+
+Pour les transactions à risque :
+
+- Placez le paiement en attente avant le débit
+- Contactez le client pour confirmer son identité
+- Instaurez un processus d'approbation
+
+Cette approche convient particulièrement aux nouveaux clients, aux montants élevés, aux anomalies géographiques et aux risques importants de rétrofacturation.
+
+## Les outils Stripe de prévention de la fraude
+
+### Stripe Radar
+
+Stripe Radar propose une détection de fraude basée sur le machine learning, un score de risque en temps réel, des règles personnalisables, une prédiction des rétrofacturations et une intégration avec 3D Secure.
+
+**Recommandation :** Activez Radar pour toutes les activités.
+
+### 3D Secure (3DS)
+
+3D Secure ajoute une vérification du client, peut transférer la responsabilité et réduit sensiblement la fraude.
+
+**Recommandation :** Activez-le pour les transactions à risque.
+
+### Les règles Radar
+
+Le moteur de règles permet de bloquer, autoriser ou placer en révision une transaction selon des conditions, des contrôles de vélocité, des restrictions géographiques ou des métadonnées.
+
+Exemples :
+
+- Bloquer après cinq tentatives échouées ou plus en une heure
+- Bloquer une transaction provenant d'un pays à risque
+- Vérifier un achat important effectué par un nouveau client
+
+## Gestion des rétrofacturations
+
+### Prévention
+
+- **Communication claire :** Utilisez des libellés de facturation explicites
+- **Résiliation simple :** Facilitez l'annulation des abonnements
+- **Reçus détaillés :** Incluez toutes les informations pertinentes
+- **Vérification du client :** Confirmez l'identité pour les montants élevés
+- **Support réactif :** Résolvez rapidement les problèmes des clients
+
+### Réponse
+
+Lorsqu'une rétrofacturation survient :
+
+1. **Rassemblez les preuves** et tous les détails de la transaction
+2. **Documentez les échanges** avec le client
+3. **Répondez au litige** dans le délai indiqué par Stripe
+4. **Analysez les tendances** et surveillez les récidivistes
+
+### Ratios de rétrofacturation acceptables
+
+- Visa : moins de **0,9%**, même si le seuil varie selon les régions
+- Mastercard : moins de **1,5%**
+- Pénalités possibles : **25 € à 100 € par rétrofacturation**, avec un risque de restriction du compte
+
+## Feuille de route de mise en œuvre
+
+### Phase 1 : Fondations (semaines 1 et 2)
+
+- Activer Stripe Radar
+- Activer 3D Secure pour les transactions à risque
+- Configurer les règles de fraude essentielles
+- Configurer les notifications de rétrofacturation
+
+### Phase 2 : Renforcement (semaines 3 et 4)
+
+- Mettre en place les contrôles de vélocité
+- Ajouter des restrictions géographiques
+- Créer des processus de vérification manuelle
+- Former l'équipe à la réponse aux fraudes
+
+### Phase 3 : Optimisation (à partir du deuxième mois)
+
+- Analyser les schémas de fraude
+- Affiner les règles à partir des données
+- Mettre en place l'empreinte des appareils
+- Envisager des modèles avancés de machine learning
+
+## Mesurer l'efficacité de la prévention
+
+Indicateurs clés :
+
+- **Taux de fraude :** Transactions frauduleuses / total des transactions. Objectif : moins de 0,5%
+- **Ratio de rétrofacturation :** Rétrofacturations / total des transactions. Objectif : moins de 0,9%
+- **Taux de faux positifs :** Transactions légitimes bloquées. Objectif : moins de 2%
+- **Latence de détection :** Temps nécessaire pour identifier la fraude. Objectif : moins d'une seconde
+- **Taux de litiges gagnés :** Litiges gagnés / total des rétrofacturations. Objectif : plus de 70%
+
+## Erreurs fréquentes à éviter
+
+- Attendre qu'un incident survienne avant d'agir
+- Bloquer trop de transactions légitimes
+- Ne pas surveiller les ratios de rétrofacturation
+- Utiliser des libellés de facturation peu clairs
+- Ne pas conserver suffisamment de preuves
+- Ignorer les tendances géographiques
+
+## Résultats attendus
+
+Les entreprises qui mettent en place une prévention complète peuvent obtenir :
+
+- Une **réduction de 50 à 70%** des incidents de fraude
+- **50 000 € à 500 000 €** de pertes annuelles évitées, selon l'échelle
+- Une amélioration de la confiance et de la fidélisation des clients
+- Une baisse des ratios de rétrofacturation et des pénalités
+- Une meilleure conformité aux exigences des réseaux de paiement
+
+## Conclusion
+
+La prévention de la fraude n'est pas une action ponctuelle, mais un processus continu. En combinant les outils intégrés de Stripe avec des pratiques adaptées, vous pouvez réduire significativement la fraude tout en maintenant une expérience client fluide. L'investissement dans la prévention est rapidement rentabilisé grâce aux pertes évitées et à la confiance préservée.`,
+      author: 'Alex Thompson',
+      date: '2026-04-20',
+      readTime: 10,
+      category: 'Sécurité et conformité',
+      tags: ['Fraude', 'Sécurité', 'Rétrofacturation', 'Gestion des risques'],
+      image: '/blog-fraud-prevention.jpg',
+      imageWidth: 1600,
+      imageHeight: 900,
+      imageType: 'image/jpeg',
+    },
   ],
 };
 
 export function getBlogArticles(language: 'en' | 'fr') {
-  return blogArticles[language];
+  return [...blogArticles[language]].sort(
+    (first, second) => Date.parse(second.date) - Date.parse(first.date)
+  );
 }
 
 export function getBlogArticleBySlug(slug: string, language: 'en' | 'fr') {

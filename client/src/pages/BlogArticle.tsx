@@ -64,12 +64,16 @@ export default function BlogArticle() {
     );
   }
 
+  const articleImage = article.image.startsWith('http')
+    ? article.image
+    : `https://www.revforge.fr${article.image.startsWith('/') ? '' : '/'}${article.image}`;
+
   const articleSchema = {
     "@context": "https://schema.org",
     "@type": "BlogPosting",
     "headline": article.title,
     "description": article.excerpt,
-    "image": article.image,
+    "image": articleImage,
     "datePublished": article.date,
     "author": {
       "@type": "Person",
@@ -84,7 +88,7 @@ export default function BlogArticle() {
         title={`${article.title} | RevForge Blog`}
         description={article.excerpt}
         canonical={`https://www.revforge.fr/blog/${article.slug}`}
-        ogImage={article.image}
+        ogImage={articleImage}
         ogType="article"
         schema={articleSchema}
       />

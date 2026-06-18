@@ -40,6 +40,12 @@ function getArticleMetaTags(url: string) {
   const title = `${article.title} | RevForge Blog`;
   const description = article.excerpt;
   const canonical = `${SITE_URL}/blog/${article.slug}`;
+  const image = article.image.startsWith("http")
+    ? article.image
+    : `${SITE_URL}${article.image.startsWith("/") ? "" : "/"}${article.image}`;
+  const imageType = article.imageType || "image/webp";
+  const imageWidth = String(article.imageWidth || 1200);
+  const imageHeight = String(article.imageHeight || 630);
 
   return [
     `<title>${escapeHtml(title)}</title>`,
@@ -51,17 +57,17 @@ function getArticleMetaTags(url: string) {
     buildMetaTag({ property: "og:url", content: canonical }),
     buildMetaTag({ property: "og:site_name", content: "RevForge" }),
     buildMetaTag({ property: "og:locale", content: "fr_FR" }),
-    buildMetaTag({ property: "og:image", content: article.image }),
-    buildMetaTag({ property: "og:image:secure_url", content: article.image }),
-    buildMetaTag({ property: "og:image:type", content: "image/webp" }),
-    buildMetaTag({ property: "og:image:width", content: "1200" }),
-    buildMetaTag({ property: "og:image:height", content: "630" }),
+    buildMetaTag({ property: "og:image", content: image }),
+    buildMetaTag({ property: "og:image:secure_url", content: image }),
+    buildMetaTag({ property: "og:image:type", content: imageType }),
+    buildMetaTag({ property: "og:image:width", content: imageWidth }),
+    buildMetaTag({ property: "og:image:height", content: imageHeight }),
     buildMetaTag({ property: "og:image:alt", content: article.title }),
     buildMetaTag({ property: "article:published_time", content: article.date }),
     buildMetaTag({ name: "twitter:card", content: "summary_large_image" }),
     buildMetaTag({ name: "twitter:title", content: title }),
     buildMetaTag({ name: "twitter:description", content: description }),
-    buildMetaTag({ name: "twitter:image", content: article.image }),
+    buildMetaTag({ name: "twitter:image", content: image }),
   ].join("\n");
 }
 

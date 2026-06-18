@@ -1,44 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://revforge.fr/</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://www.revforge.fr/</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
   </url>
   <url>
-    <loc>https://revforge.fr/blog</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://www.revforge.fr/blog</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
   <url>
-    <loc>https://revforge.fr/blog/stripe-retry-strategy-optimization</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://www.revforge.fr/blog/fraud-prevention-revenue-protection</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://revforge.fr/blog/payment-failure-analysis</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://www.revforge.fr/blog/stripe-payment-retry-strategy</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://revforge.fr/blog/dunning-management-churn-reduction</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://www.revforge.fr/blog/stripe-payment-failure-analysis</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://revforge.fr/blog/stripe-configuration-audit-checklist</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://www.revforge.fr/blog/dunning-management-reduce-churn</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://revforge.fr/contact</loc>
-    <lastmod>2026-04-24</lastmod>
+    <loc>https://www.revforge.fr/blog/stripe-configuration-audit</loc>
+    <lastmod>2026-06-18</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://www.revforge.fr/contact</loc>
+    <lastmod>2026-06-18</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>

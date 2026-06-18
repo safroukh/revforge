@@ -64,7 +64,7 @@ export default function Blog() {
     "@type": "Blog",
     "name": "RevForge Blog",
     "description": "Expert insights on Stripe payment optimization, failed payment recovery, and revenue optimization for SaaS and e-commerce.",
-    "url": "https://revforge.fr/blog"
+    "url": "https://www.revforge.fr/blog"
   };
 
   return (
@@ -72,7 +72,7 @@ export default function Blog() {
       <SEO
         title={language === 'en' ? 'Blog - RevForge | Stripe Payment Optimization Insights' : 'Blog - RevForge | Conseils sur l\'optimisation des paiements Stripe'}
         description={language === 'en' ? 'Expert insights on Stripe optimization, payment strategy, and revenue recovery. Learn how to reduce failed payments and improve LTV.' : 'Conseils d\'experts sur l\'optimisation de Stripe, la stratégie de paiement et la récupération de revenus. Apprenez à réduire les paiements échoués.'}
-        canonical="https://revforge.fr/blog"
+        canonical="https://www.revforge.fr/blog"
         schema={blogSchema}
       />
       <Header />
