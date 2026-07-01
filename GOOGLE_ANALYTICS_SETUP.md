@@ -14,18 +14,18 @@ RevForge is configured with Google Analytics 4 (GA4) tracking for conversion opt
 4. Select your web stream
 5. Copy your **Measurement ID** (format: `G-XXXXXXXXXX`)
 
-### 2. Update the Hook
+### 2. Add The Environment Variable
 
-Open `/client/src/hooks/useAnalytics.ts` and replace the placeholder:
+Add your Measurement ID as an environment variable before deployment:
 
-```typescript
-const GA_ID = 'G-XXXXXXXXXX'; // Replace with your GA4 Measurement ID
+```env
+VITE_GA_MEASUREMENT_ID=G-T5LW5Q2BFX
 ```
 
-With your actual Measurement ID:
+For example:
 
-```typescript
-const GA_ID = 'G-ABC123DEF456'; // Example
+```env
+VITE_GA_MEASUREMENT_ID=G-T5LW5Q2BFX
 ```
 
 ### 3. Tracked Events
@@ -33,7 +33,7 @@ const GA_ID = 'G-ABC123DEF456'; // Example
 The implementation tracks the following events automatically:
 
 #### Page Views
-- Automatically tracked on page load
+- Automatically tracked on page load and route changes
 - Includes page path and title
 
 #### CTA Clicks
@@ -44,7 +44,8 @@ The implementation tracks the following events automatically:
 #### Form Submissions
 - **Event**: `form_submit`
 - **Tracked on**: Contact form submission
-- **Parameters**: `form_name`, `company`, `arr`, `language`
+- **Parameters**: `form_name`, `language`
+- Personal or business data such as name, email, company, and ARR is not sent to Google Analytics
 
 #### Conversions
 - **Event**: `conversion`
@@ -93,8 +94,7 @@ export default function MyForm() {
     // Your form submission logic
     
     trackFormSubmission('my_form', {
-      field1: 'value1',
-      field2: 'value2',
+      language: 'fr',
     });
 
     trackConversion('my_conversion_type', 100); // Optional value
@@ -113,7 +113,7 @@ export default function MyForm() {
 
 ## Important Notes
 
-- Replace `G-XXXXXXXXXX` with your actual Measurement ID before deployment
+- Set `VITE_GA_MEASUREMENT_ID` with your actual Measurement ID before deployment
 - The hook initializes GA4 automatically when the app loads
 - All events are sent to Google Analytics in real-time
 - You can view reports in GA4 dashboard under **Reports > Engagement**

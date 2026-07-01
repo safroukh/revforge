@@ -98,8 +98,6 @@ export default function ContactForm() {
 
       // Track form submission in Google Analytics
       trackFormSubmission('contact_form', {
-        company: formData.company,
-        arr: formData.arr,
         language: language,
       });
 
